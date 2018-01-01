@@ -416,7 +416,10 @@ p {
 header {
   display: flex;
   flex-direction: row;
-  justify-content: center; }
+  justify-content: space-between; }
+
+.item-1 {
+  margin-right: auto; }
 
 .container {
   display: flex;

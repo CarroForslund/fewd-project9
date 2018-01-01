@@ -1,6 +1,10 @@
 header {
-  @include flex-container(row, center); //Make it a flex container
+  @include flex-container(row, space-between); //Make it a flex container
   @extend %header;
+}
+
+.item-1 {
+  margin-right: auto;
 }
 
 .container{
