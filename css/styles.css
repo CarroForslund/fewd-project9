@@ -1,0 +1,33 @@
+html{
+  min-height: 100%;
+}
+
+header{
+  background-color: #7477bf;
+  color: #fff;
+  height: 80px;
+  width: 100%;
+}
+
+.logo{
+  display: inline-block;
+}
+
+.notification{
+  width: 40px;
+  height; auto;
+}
+
+.avatar{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.menu-bar{
+  display: inline-block;
+  background-color: #4d4c72;
+  width: 80px;
+  height: 1000px;
+  float: left;
+}
