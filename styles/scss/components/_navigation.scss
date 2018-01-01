@@ -3,10 +3,11 @@
 // ==============================================================================
 .nav {
   //Make it a flex container
-  @include flex-container(row, center);
+  @include flex-container(column, flex-start);
 
   //Flex items
   @include element(item){ //nav__item
+    @extend %nav-item;
     // height: em(50px);
     // padding: 0;
   };

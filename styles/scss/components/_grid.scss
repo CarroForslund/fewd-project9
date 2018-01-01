@@ -1,20 +1,17 @@
 header {
-  //Make it a flex container
-  @include flex-container(row, center);
+  @include flex-container(row, center); //Make it a flex container
   @extend %header;
 }
 
-.nav {
-  background-color: $color-secondary;
+.container{
+  @include flex-container(row, flex-start); //Make it a flex container
 }
 
-// .container{
-//   padding: em(30px);
-//   @include mediaquery(medium){
-//     max-width: 80%;
-//     margin: 0 auto;
-//   };
-// }
+.nav {
+  @extend %nav;
+}
+
+
 //
 // .grid {
 //   &__row {

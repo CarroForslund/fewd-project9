@@ -3,9 +3,14 @@ header {
   color: #ffffff;
   height: 100px; }
 
-.img--avatar, .icon--notification {
+.img--avatar {
   display: inline-block;
   align-self: center; }
+
+.icon--notification, .icon--navigation {
+  display: inline-block;
+  align-self: center;
+  fill: #ffffff; }
 
 .headline--primary {
   color: #808080;
@@ -21,6 +26,17 @@ header {
   align-self: center;
   margin: 0;
   font-weight: 300; }
+
+.nav {
+  background-color: #4d4c72;
+  width: 100px;
+  height: 100%;
+  padding-top: 2em;
+  margin: 0; }
+
+.nav__item {
+  justify-content: center;
+  margin: 0 auto 2em; }
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -396,8 +412,10 @@ header {
   flex-direction: row;
   justify-content: center; }
 
-.nav {
-  background-color: #4d4c72; }
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
 
 .img--avatar {
   width: 50px;
@@ -407,10 +425,13 @@ header {
 .icon--notification {
   width: 40px;
   height: 40px; }
+.icon--navigation {
+  width: 40px;
+  height: 40px; }
 
 .nav {
   display: flex;
-  flex-direction: row;
-  justify-content: center; }
+  flex-direction: column;
+  justify-content: flex-start; }
 
 /*# sourceMappingURL=styles.css.map */

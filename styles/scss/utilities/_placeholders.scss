@@ -34,6 +34,7 @@
 %icon {
   display: inline-block;
   align-self: center;
+  fill: $white;
 }
 
 //==============================================================================
@@ -60,21 +61,34 @@
 //==============================================================================
 // NAVIGATION ITEMS
 //==============================================================================
-// %nav-item-link {
-//   display: block;
-//   text-decoration: none;
-//   color: $black;
-//   width: 100%;
-//   height: 100%;
-//   margin: 0;
-//   padding: em(15px);
-//   border-radius: $border--rounded-corners;
-//   font-weight: 300;
-//   font-size: em(17px);
-//   transition-duration: .12s;
-// }
-//
-// %nav-item-on {
-//   color: $white;
-//   background-color: $color-primary;
-// }
+%nav {
+  background-color: $color-secondary;
+  width: 100px;
+  height: 100%;
+  padding-top: 2em;
+  margin: 0;
+}
+
+%nav-item {
+  justify-content: center;
+  margin: 0 auto 2em;
+}
+
+%nav-item-link {
+  display: block;
+  text-decoration: none;
+  color: $black;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: em(15px);
+  border-radius: $border--rounded-corners;
+  font-weight: 300;
+  font-size: em(17px);
+  transition-duration: .12s;
+}
+
+%nav-item-on {
+  color: $white;
+  background-color: $color-primary;
+}

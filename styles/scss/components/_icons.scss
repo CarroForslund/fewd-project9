@@ -3,7 +3,13 @@
 //==============================================================================
 .icon {
   @include modifier(notification){
-    @extend %img;
+    @extend %icon;
+    width: 40px;
+    height: 40px;
+  }
+
+  @include modifier(navigation){
+    @extend %icon;
     width: 40px;
     height: 40px;
   }
