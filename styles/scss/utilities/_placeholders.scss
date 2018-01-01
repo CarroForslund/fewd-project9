@@ -92,3 +92,13 @@
   color: $white;
   background-color: $color-primary;
 }
+
+//==============================================================================
+// BUTTONS
+//==============================================================================
+%button {
+  border-radius: $border--rounded-corners;
+  border: none;
+	text-transform: uppercase;
+  color: $white;
+}

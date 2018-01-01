@@ -38,6 +38,12 @@ header {
   justify-content: center;
   margin: 0 auto 2em; }
 
+[class^="btn--"] {
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  color: #ffffff; }
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
