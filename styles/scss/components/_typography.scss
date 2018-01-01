@@ -1,0 +1,14 @@
+.headline {
+  &--primary{
+    @extend %headline-primary;
+  }
+
+  &--secondary{
+    @extend %headline-secondary;
+  }
+}
+
+//Links
+.link {
+  @extend %link;
+}

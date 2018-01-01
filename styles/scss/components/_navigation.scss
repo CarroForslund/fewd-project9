@@ -1,0 +1,22 @@
+//==============================================================================
+// NAVIGATION
+//==============================================================================
+.nav {
+  //Make it a flex container
+  @include flex-container(center);
+
+  //Flex items
+  @include element(item){ //nav__item
+    height: em(50px);
+    text-align: center;
+    padding: 0;
+  };
+
+  a {
+    @extend %nav-item-link;
+    &:active,
+    &:hover{
+      @extend %nav-item-on;
+    }
+  }
+}

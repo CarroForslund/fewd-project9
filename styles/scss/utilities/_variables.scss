@@ -1,0 +1,62 @@
+//==============================================================================
+// FONTS
+//==============================================================================
+//@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,900');
+
+// Font stacks
+$font-url--google       :  "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900";
+$font-family--primary   :  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family--secondary :  "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//Font Weights
+$font-weight--light   : 300;
+$font-weight--regular : 400;
+$font-weight--bold    : 700;
+$font-weight--bolder  : 900;
+
+//==============================================================================
+// TEXT
+//==============================================================================
+$base__font-size  : 16px;
+$base__line       : 24px;
+
+//==============================================================================
+// BREAKPOINTS
+//==============================================================================
+$breakpoint-xsmall :     1px;
+$breakpoint-small  :   320px;
+$breakpoint-medium :   768px;
+$breakpoint-large  :  1024px;
+
+//==============================================================================
+// COLORS                                http://chir.ag/projects/name-that-color
+//==============================================================================
+
+$white        :  #ffffff;
+$black        :  #808080;  //grey-ish
+
+$ship-cove    :  #7477bf;  //purple
+$mulled-wine  :  #4d4c72;  //dark purple
+$de-york      :  #81c98f;  //green
+$glacier      :  #74b1bf;  //blue
+
+//Color usage
+$color-primary      : $ship-cove;
+$color-secondary    : $mulled-wine;
+
+//Lighter colors
+$color-primary-light : lighten($ship-cove, 10%);
+
+//==============================================================================
+// BORDERS
+//==============================================================================
+$border--rounded-corners	: 5px;
+$border--round				    : 50%;
+
+//==============================================================================
+// GRID
+//==============================================================================
+$grid-column-width         :  20px;
+$grid-gutter-width         :  20px;
+$grid-column-count         :  12;
+$grid-container-max-width  :  1050px;

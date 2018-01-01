@@ -1,0 +1,33 @@
+//==============================================================================
+// BUTTONS
+//==============================================================================
+
+//Select any class with beginning of btn--
+[class^="btn--"] {
+  border-radius: $border--rounded-corners;
+  margin: em(18px) 0;
+ 	padding: em(13px);
+  border: none;
+	text-transform: uppercase;
+  color: $white;
+  width: 100%;
+
+
+  @include mediaquery(medium){
+    width: auto;
+    margin: 0 1em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    // flex-grow: 1;
+  }
+
+  @include mediaquery(large){
+    padding-left: 3.5em;
+    padding-right: 3.5em;
+  }
+}
+
+.form button{
+  margin: 0;
+  width: 100%;
+}
