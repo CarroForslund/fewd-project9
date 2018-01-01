@@ -1,11 +1,10 @@
 //==============================================================================
-// IMAGES
+// ICONS
 //==============================================================================
-.img {
-  @include modifier(avatar){
+.icon {
+  @include modifier(notification){
     @extend %img;
-    width: 50px;
-    height: 50px;
-    border-radius: $border--round;
+    width: 40px;
+    height: 40px;
   }
 }

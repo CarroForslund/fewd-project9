@@ -1,21 +1,21 @@
 //==============================================================================
 // FONTS
 //==============================================================================
-@if variable-exists($font-url--google){
-  @import url($font-url--google);
-}
+// @if variable-exists($font-url--google){
+//   @import url($font-url--google);
+// }
 
 //==============================================================================
 // PIXELS TO EM
 //==============================================================================
-@function em($target, $context: $base__font-size){
-  @return ($target / $context) * 1em;
-}
+// @function em($target, $context: $base__font-size){
+//   @return ($target / $context) * 1em;
+// }
 
 //==============================================================================
 // GRID - Set the context width
 //==============================================================================
-@function grid-context($grid-column-width, $grid-column-count, $grid-gutter-width){
-  $grid-context: ($grid-column-width * $grid-column-count) + ($grid-gutter-width * ($grid-column-count - 1));
-  @return $grid-context;
-}
+// @function grid-context($grid-column-width, $grid-column-count, $grid-gutter-width){
+//   $grid-context: ($grid-column-width * $grid-column-count) + ($grid-gutter-width * ($grid-column-count - 1));
+//   @return $grid-context;
+// }

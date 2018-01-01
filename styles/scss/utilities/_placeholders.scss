@@ -1,20 +1,38 @@
 //==============================================================================
+// HEADER
+//==============================================================================
+%header {
+  background-color: $color-primary;
+  color: $white;
+  height: 100px;
+}
+
+
+//==============================================================================
 // LINKS
 //==============================================================================
-%link {
-  text-decoration: none;
-  font-weight: $font-weight--regular;
-  color: $color-secondary;
-  &:hover{
-    text-decoration: underline;
-  }
-}
+// %link {
+//   text-decoration: none;
+//   font-weight: $font-weight--regular;
+//   color: $color-secondary;
+//   &:hover{
+//     text-decoration: underline;
+//   }
+// }
 
 //==============================================================================
 // IMAGES
 //==============================================================================
 %img {
-  display: block;
+  display: inline-block;
+  align-self: center;
+}
+
+//==============================================================================
+// ICONS
+//==============================================================================
+%icon {
+  display: inline-block;
   align-self: center;
 }
 
@@ -22,35 +40,41 @@
 // HEADLINES
 //==============================================================================
 %headline-primary {
-  color: $color-primary;
-  font-weight: $font-weight--bold;
-  margin-left: em(20px);
+  color: $black;
+  font-weight: $font-weight--regular;
 }
 
 %headline-secondary {
   color: $black;
+  font-weight: $font-weight--regular;
+  text-transform: uppercase;
+}
+
+%logo {
+  display: inline-block;
+  align-self: center;
+  margin: 0;
   font-weight: $font-weight--light;
-  margin-left: em(10px);
 }
 
 //==============================================================================
 // NAVIGATION ITEMS
 //==============================================================================
-%nav-item-link {
-  display: block;
-  text-decoration: none;
-  color: $black;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: em(15px);
-  border-radius: $border--rounded-corners;
-  font-weight: 300;
-  font-size: em(17px);
-  transition-duration: .12s;
-}
-
-%nav-item-on {
-  color: $white;
-  background-color: $color-primary;
-}
+// %nav-item-link {
+//   display: block;
+//   text-decoration: none;
+//   color: $black;
+//   width: 100%;
+//   height: 100%;
+//   margin: 0;
+//   padding: em(15px);
+//   border-radius: $border--rounded-corners;
+//   font-weight: 300;
+//   font-size: em(17px);
+//   transition-duration: .12s;
+// }
+//
+// %nav-item-on {
+//   color: $white;
+//   background-color: $color-primary;
+// }

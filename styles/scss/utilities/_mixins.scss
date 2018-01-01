@@ -25,13 +25,13 @@
 //==============================================================================
 // FLEXBOX SETTINGS
 //==============================================================================
-@mixin flex-container($justify-content) {
+@mixin flex-container($direction, $justify-content) {
   display: flex;
-	flex-direction: column;
+	flex-direction: $direction;
   justify-content: $justify-content;
-  @include mediaquery(medium) {
-    flex-direction: row;
-  }
+  // @include mediaquery(medium) {
+  //   flex-direction: row;
+  // }
 }
 
 //==============================================================================
