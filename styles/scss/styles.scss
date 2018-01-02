@@ -1,18 +1,16 @@
 //==============================================================================
-// VARIABLES
+// VARIABLES (utilities)
 //==============================================================================
 
 // FONT STACKS -----------------------------------------------------------------
-
-$font-url    :  "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700";
-$font-family :  'Roboto', sans-serif;
+$font-url    :  'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
+$font-family :  'Open Sans', sans-serif;
 
 //Font Weights
-$font-weight-thin    : 100;
-$font-weight-light   : 300;
-$font-weight-regular : 400;
-$font-weight-bold    : 700;
-$font-weight-bolder  : 900;
+$font-weight-light  : 300;
+$font-weight-regular: 400;
+$font-weight-bold   : 600;
+$font-weight-bolder : 700;
 
 //Font size
 $base-font-size: 16px;
@@ -46,7 +44,7 @@ $breakpoint-l  :  1024px;
 
 
 //==============================================================================
-// FUNCTIONS
+// FUNCTIONS (utilities)
 //==============================================================================
 
 @if variable-exists($font-url){
@@ -55,14 +53,36 @@ $breakpoint-l  :  1024px;
 
 
 //==============================================================================
-// MIXINS
+// MIXINS (utilities)
 //==============================================================================
 
+@mixin mediaquery($breakpoint){
+  @if $breakpoint == "small"{
+    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium){
+      @content;
+    }
+  }
+  @else if $breakpoint == "medium"{
+    @media (min-width: $breakpoint-medium + 1){
+      @content;
+    }
+  }
+  @else if $breakpoint == "large"{
+    @media (min-width: $breakpoint-large){
+      @content;
+    }
+  }
+  @else {
+    @error "Whoops! No value could be retrieved for '#{$breakpoint}'.";
+  }
+}
+
 // FLEXBOX ---------------------------------------------------------------------
-@mixin flex-container($justify-content, $direction: row) {
-  display: flex;
+@mixin flex-container($justify-content: flex-start, $direction: column, $display: flex) {
+  display: $display;
 	flex-direction: $direction;
   justify-content: $justify-content;
+  @content;
 }
 //
 // // ELEMENT AND MODIFIER BEM SELECTORS ------------------------------------------
@@ -80,7 +100,7 @@ $breakpoint-l  :  1024px;
 // }
 
 //==============================================================================
-// BASE STYLES            The universal selector (*), ul elements and p elements
+// BASE STYLES (base)     The universal selector (*), ul elements and p elements
 //==============================================================================
 
 // Set box sizing to include border and margin when calculating dimensions
@@ -107,48 +127,87 @@ p {
 // GRID
 //==============================================================================
 
-main {
-  @include flex-container(space-between, column); //Make it a flex container
-}
-
 // GRID ------------------------------------------------------------------------
-.grid {
-  &-row {
-    @include flex-container(space-between, row); //Make it a flex container
-  }
-  &-column {
-    &-1 {
-      width: 50%;
-    }
-    &-2{
-      width: 100%;
-    }
+// .grid {
+//   &-row {
+//     @include flex-container(space-between, row); //Make it a flex container
+//   }
+//   &-column {
+//     &-1 {
+//       width: 50%;
+//     }
+//     &-2{
+//       width: 100%;
+//     }
+//   }
+// }
 
-  }
+.flex-item-1 {
+  margin-right: auto;
 }
-
-// GRID COLUMN -----------------------------------------------------------------
 
 //==============================================================================
 // LAYOUT
 //==============================================================================
 
+// WRAPPER ---------------------------------------------------------------------
+.wrapper {
+  @include flex-container();
+}
+
+
 // HEADER ----------------------------------------------------------------------
 header {
+  @include flex-container($direction: row){
+    align-items: center;
+  };
+  padding: 1.5em;
   background-color: $color-primary;
   color: $white;
+  .user-name {
+    display: inline-block;
+    color: $white;
+    font-size: .9em;
+    line-height: 1.2em;
+    font-weight: $font-weight-light;
+  }
 }
 
 // NAVIGATION ------------------------------------------------------------------
 
 .main-nav {
-  width: 80px;
+  @include flex-container(space-around, row); //Make it a flex container
+  padding: 1em;
   background-color: $color-secondary;
+  float: left;
+  // .nav-item{
+  //   height: 100%;
+  //   width: auto;
+  //   margin: 30px auto 0;
+  // }
+}
+
+// NAVIGATION ------------------------------------------------------------------
+.search-bar {
+  .search {
+    background-color: $white;
+    margin: 0 auto;
+  }
 }
 
 // MAIN CONTENT AREA -----------------------------------------------------------
 
+main {
+  padding: 1em;
+}
+
 .social-stats-card {
+  @include flex-container(space-between, row){
+    align-items: center;
+  };
+  height: auto;
+  margin: 2em 0;
+  padding: 0.5em 2em;
   background-color: $lightGrey;
   border: 1px solid $darkGrey;
   border-radius: 4px;
@@ -159,6 +218,7 @@ header {
   width: 80px;
   height: 80px;
   padding: 20px;
+  margin: 1em 0;
   border-radius: 50%;
 }
 
@@ -169,14 +229,12 @@ header {
 // HEADLINES -------------------------------------------------------------------
 
 .headline-primary {
-  display: block;
   font-size: 1.5em;
   color: $black;
   font-weight: $font-weight-regular;
 }
 
 .headline-secondary {
-  display: block;
   font-size: .9em;
   color: $black;
   font-weight: $font-weight-regular;
@@ -185,9 +243,24 @@ header {
 
 .logo {
   display: inline-block;
-  align-self: center;
-  margin: 0;
+  // align-self: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1em;
   font-weight: $font-weight-light;
+}
+
+.social-stats-headline {
+  color: $color-primary;
+  font-size: 1.2em;
+  font-weight: $font-weight-bolder;
+  margin: 0;
+}
+
+.social-stats-number {
+  font-size: 2em;
+  font-weight: $font-weight-light;
+  margin: 0;
 }
 
 //==============================================================================
@@ -197,29 +270,33 @@ header {
 // IMAGES ----------------------------------------------------------------------
 
 .avatar {
-  width: 60px;
-  height: 60px;
-  padding: .5em;
+  width: 40px;
+  height: 40px;
+  margin: .5em;
   border-radius: 50%;
-  align-self: center;
+  // align-self: center;
 }
 
 // ICONS -----------------------------------------------------------------------
 
 header .icon {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
+  margin: 0 .8em 0 1em;
+  padding-right: .6em;
+  border-right: 1px solid $color-secondary;
 }
 
 .main-nav .icon {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   fill: $color-secondary-light;
+  &:hover{
+    fill: $white;
+  }
 }
 
 .main-nav .current {
-  width: 35px;
-  height: 35px;
   fill: $white;
 }
 
