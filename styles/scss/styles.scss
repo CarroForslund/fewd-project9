@@ -38,17 +38,30 @@ $color-secondary-light : lighten($mulledWine, 20%);
 
 // BREAKPOINTS -----------------------------------------------------------------
 
-$breakpoint-s  :     1px;
-$breakpoint-m  :   768px;
-$breakpoint-l  :  1024px;
+$breakpoint-small  :     1px;
+$breakpoint-medium :   768px;
+$breakpoint-large  :  1024px;
 
+
+// GRID ------------------------------------------------------------------------
+$grid-column-width         :    60px;
+$grid-gutter-width         :    0px;
+$grid-column-count         :    12;
+$grid-container-max-width  :  1050px;
 
 //==============================================================================
 // FUNCTIONS (utilities)
 //==============================================================================
 
+// Make sure font variable is valid
 @if variable-exists($font-url){
   @import url($font-url);
+}
+
+// GRID - Set the context width
+@function grid-context($grid-col-width, $grid-col-count, $grid-gutter-width){
+  $grid-context: ($grid-col-width * $grid-col-count) + ($grid-gutter-width * ($grid-col-count - 1));
+  @return $grid-context;
 }
 
 
@@ -63,7 +76,7 @@ $breakpoint-l  :  1024px;
     }
   }
   @else if $breakpoint == "medium"{
-    @media (min-width: $breakpoint-medium + 1){
+    @media (min-width: $breakpoint-medium){
       @content;
     }
   }
@@ -128,19 +141,37 @@ p {
 //==============================================================================
 
 // GRID ------------------------------------------------------------------------
-// .grid {
-//   &-row {
-//     @include flex-container(space-between, row); //Make it a flex container
-//   }
-//   &-column {
-//     &-1 {
-//       width: 50%;
-//     }
-//     &-2{
-//       width: 100%;
-//     }
-//   }
-// }
+.grid {
+  &-row {
+    // @include flex-container(space-between, row); //Make it a flex container
+    padding: 1em;
+    @include mediaquery(medium){
+      @include flex-container(space-between, row){
+        flex-grow: 1;
+      };
+    }
+  }
+  // &-column {
+  //   &-1 {
+  //     width: 50%;
+  //   }
+  //   &-2{
+  //     width: 100%;
+  //   }
+  // }
+}
+
+//Calculate grid column sizes for bigger screens
+@include mediaquery(medium){
+  @for $i from 1 to $grid-column-count{
+    $context : grid-context($grid-column-width, $grid-column-count, $grid-column-width);
+    $target  : ($grid-column-width * $i) + ($grid-gutter-width * ($i - 1));
+    //Generate column modifier classes
+    .grid__col--#{$i}{
+      width: percentage($target / $context);
+    }
+  }
+}
 
 .flex-item-1 {
   margin-right: auto;
@@ -173,21 +204,27 @@ header {
   }
 }
 
+// DASHBOARD CONTAINER ---------------------------------------------------------
+.main-container {
+  @include flex-container(space-between, column);
+  @include mediaquery(medium){
+    @include flex-container(flex-start, row);
+  }
+}
+
 // NAVIGATION ------------------------------------------------------------------
 
 .main-nav {
   @include flex-container(space-around, row); //Make it a flex container
   padding: 1em;
   background-color: $color-secondary;
-  float: left;
-  // .nav-item{
-  //   height: 100%;
-  //   width: auto;
-  //   margin: 30px auto 0;
-  // }
+  // float: left;
+  @include mediaquery(medium){
+    @include flex-container(flex-start, column);
+  }
 }
 
-// NAVIGATION ------------------------------------------------------------------
+// SEARCH ----------------------------------------------------------------------
 .search-bar {
   .search {
     background-color: $white;
@@ -199,6 +236,18 @@ header {
 
 main {
   padding: 1em;
+  @include mediaquery(medium){
+    padding: 0;
+    flex-grow: 1;
+  }
+}
+
+.dashboard-top {
+  // @include mediaquery(medium){
+  //   @include flex-container(space-between, row){
+  //     flex-grow: 1;
+  //   };
+  // }
 }
 
 .social-stats-card {
@@ -293,6 +342,9 @@ header .icon {
   fill: $color-secondary-light;
   &:hover{
     fill: $white;
+  }
+  @include mediaquery(medium){
+    margin-bottom: 1.5em;
   }
 }
 
