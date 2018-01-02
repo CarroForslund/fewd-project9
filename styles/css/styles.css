@@ -12,6 +12,20 @@ p {
   font-size: 16px;
   font-weight: 300; }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.grid-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+.grid-column-1 {
+  width: 50%; }
+.grid-column-2 {
+  width: 100%; }
+
 header {
   background-color: #7477bf;
   color: #ffffff; }
