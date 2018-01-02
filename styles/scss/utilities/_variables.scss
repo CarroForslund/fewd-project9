@@ -45,7 +45,8 @@ $color-primary      : $ship-cove;
 $color-secondary    : $mulled-wine;
 
 //Lighter colors
-$color-primary-light : lighten($ship-cove, 10%);
+$color-primary-light   : lighten($ship-cove, 10%);
+$color-secondary-light : lighten($mulled-wine, 20%);
 
 //==============================================================================
 // BORDERS
@@ -56,7 +57,7 @@ $border--round				    : 50%;
 //==============================================================================
 // GRID
 //==============================================================================
-// $grid-column-width         :  20px;
-// $grid-gutter-width         :  20px;
-// $grid-column-count         :  12;
-// $grid-container-max-width  :  1050px;
+$grid-column-width         :  65px;
+$grid-gutter-width         :  20px;
+$grid-column-count         :  12;
+$grid-container-max-width  :  1050px;

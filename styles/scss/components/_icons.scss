@@ -4,13 +4,14 @@
 .icon {
   @include modifier(notification){
     @extend %icon;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
   }
 
   @include modifier(navigation){
     @extend %icon;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
+    fill: $color-secondary-light;
   }
 }

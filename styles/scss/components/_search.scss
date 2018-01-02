@@ -1,11 +1,11 @@
 //==============================================================================
-// IMAGES
+// SEARCH BAR
 //==============================================================================
-.img {
-  @include modifier(avatar){
-    @extend %img;
-    width: 40px;
-    height: 40px;
-    border-radius: $border--round;
-  }
+
+.search-bar{
+  background-color: lightgrey;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
 }

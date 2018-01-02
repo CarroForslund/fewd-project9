@@ -4,7 +4,7 @@
 %header {
   background-color: $color-primary;
   color: $white;
-  height: 100px;
+  height: 75px;
 }
 
 
@@ -34,18 +34,21 @@
 %icon {
   display: inline-block;
   align-self: center;
-  fill: $white;
 }
 
 //==============================================================================
 // HEADLINES
 //==============================================================================
 %headline-primary {
+  display: block;
+  font-size: 1.5em;
   color: $black;
   font-weight: $font-weight--regular;
 }
 
 %headline-secondary {
+  display: block;
+  font-size: .9em;
   color: $black;
   font-weight: $font-weight--regular;
   text-transform: uppercase;
@@ -63,7 +66,7 @@
 //==============================================================================
 %nav {
   background-color: $color-secondary;
-  width: 100px;
+  width: 80px;
   height: 100%;
   padding-top: 2em;
   margin: 0;

@@ -3,6 +3,10 @@ header {
   @extend %header;
 }
 
+main {
+  width: 100%;
+}
+
 .item-1 {
   margin-right: auto;
 }
@@ -16,42 +20,43 @@ header {
 }
 
 
-//
-// .grid {
-//   &__row {
-//     margin: em(40px) 0;
-//     @include mediaquery(medium){
-//       @include flex-container(space-between);
-//     };
-//   }
-// }
-//
-// //Select any class with beginning of grid__col--
-// [class^="grid__col--"] {
-//   border-radius: $border--rounded-corners;
-//   margin: em(6px) 2%;
-//  	padding: em(13px);
-//   border: none;
-//   color: $black;
-//   display: block;
-//   width: 100%;
-//   @include mediaquery(medium){
-//     // text-align: center;
-//     @include flex-container(center);
-//   }
-// }
-//
-// //Calculate grid column sizes for bigger screens
-// @include mediaquery(medium){
-//   @for $i from 1 to $grid-column-count{
-//     $context : grid-context($grid-column-width, $grid-column-count, $grid-column-width);
-//     $target  : ($grid-column-width * $i) + ($grid-gutter-width * ($i - 1));
-//     //Generate column modifier classes
-//     .grid__col--#{$i}{
-//       width: percentage($target / $context);
-//     }
-//   }
-// }
+
+.grid {
+  &__row {
+    // margin: em(40px) 0;
+    // padding: 1em;
+    border-bottom: 1px solid grey;
+    @include mediaquery(medium){
+      @include flex-container(row, space-between);
+    };
+  }
+}
+
+//Select any class with beginning of grid__col--
+[class^="grid__col--"] {
+  // border-radius: $border--rounded-corners;
+  // margin: em(6px) 2%;
+ 	// padding: em(13px);
+  color: $black;
+  display: block;
+  width: 100%;
+  @include mediaquery(medium){
+    // text-align: center;
+    @include flex-container(row, flex-start);
+  }
+}
+
+//Calculate grid column sizes for bigger screens
+@include mediaquery(medium){
+  @for $i from 1 to $grid-column-count{
+    $context : grid-context($grid-column-width, $grid-column-count, $grid-column-width);
+    $target  : ($grid-column-width * $i) + ($grid-gutter-width * ($i - 1));
+    //Generate column modifier classes
+    .grid__col--#{$i}{
+      width: percentage($target / $context);
+    }
+  }
+}
 //
 // .centered{
 //   @include mediaquery(medium){
