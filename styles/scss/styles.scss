@@ -1,7 +1,256 @@
 //==============================================================================
-//Import all scss index files
+// VARIABLES
 //==============================================================================
 
-@import "utilities/index";
-@import "base/index";
-@import "components/index";
+// FONT STACKS -----------------------------------------------------------------
+
+$font-url    :  "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700";
+$font-family :  'Roboto', sans-serif;
+
+//Font Weights
+$font-weight-thin    : 100;
+$font-weight-light   : 300;
+$font-weight-regular : 400;
+$font-weight-bold    : 700;
+$font-weight-bolder  : 900;
+
+//Font size
+$base-font-size: 16px;
+
+// COLORS ----------------------------------------------------------------------
+
+$white       :  #ffffff;
+$lightGrey   :  #fbfbfb;
+$darkGrey    :  #b2b2b2;
+$black       :  #808080;  //grey-ish
+
+$shipCove    :  #7477bf;  //purple
+$mulledWine  :  #4d4c72;  //dark purple
+$deYork      :  #81c98f;  //green
+$glacier     :  #74b1bf;  //blue
+
+//Color usage
+$color-primary      : $shipCove;
+$color-secondary    : $mulledWine;
+
+//Lighter colors
+$color-primary-light   : lighten($shipCove, 10%);
+$color-secondary-light : lighten($mulledWine, 20%);
+
+
+// BREAKPOINTS -----------------------------------------------------------------
+
+$breakpoint-s  :     1px;
+$breakpoint-m  :   768px;
+$breakpoint-l  :  1024px;
+
+
+//==============================================================================
+// FUNCTIONS
+//==============================================================================
+
+@if variable-exists($font-url){
+  @import url($font-url);
+}
+
+
+// //==============================================================================
+// // MIXINS
+// //==============================================================================
+//
+// // ELEMENT AND MODIFIER BEM SELECTORS ------------------------------------------
+//
+// @mixin element($element){
+//   &__#{$element}{
+//     @content;
+//   }
+// }
+//
+// @mixin modifier($modifier){
+//   &--#{$modifier}{
+//     @content;
+//   }
+// }
+
+//==============================================================================
+// BASE STYLES            The universal selector (*), ul elements and p elements
+//==============================================================================
+
+// Set box sizing to include border and margin when calculating dimensions
+* {
+	box-sizing: border-box;
+}
+
+// Remove bullets from unordered lists
+ul {
+	list-style-type: none;
+  margin: 0;
+	padding-left: 0;
+}
+
+p {
+	color: $black;
+	font-family: $font-family;
+	font-size: $base-font-size;
+	font-weight: $font-weight-light;
+	// line-height: em(24px);
+}
+
+//==============================================================================
+// GRID
+//==============================================================================
+
+// GRID ------------------------------------------------------------------------
+
+// GRID ROW --------------------------------------------------------------------
+
+// GRID COLUMN -----------------------------------------------------------------
+
+//==============================================================================
+// LAYOUT
+//==============================================================================
+
+// HEADER ----------------------------------------------------------------------
+header {
+  background-color: $color-primary;
+  color: $white;
+}
+
+// NAVIGATION ------------------------------------------------------------------
+
+.main-nav {
+  width: 80px;
+  background-color: $color-secondary;
+}
+
+// MAIN CONTENT AREA -----------------------------------------------------------
+
+.social-stats-card {
+  background-color: $lightGrey;
+  border: 1px solid $darkGrey;
+  border-radius: 4px;
+}
+
+.social-stats {
+  background-color: $color-primary;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+//==============================================================================
+// TYPOGRAPHY
+//==============================================================================
+
+// HEADLINES -------------------------------------------------------------------
+
+.headline-primary {
+  display: block;
+  font-size: 1.5em;
+  color: $black;
+  font-weight: $font-weight-regular;
+}
+
+.headline-secondary {
+  display: block;
+  font-size: .9em;
+  color: $black;
+  font-weight: $font-weight-regular;
+  text-transform: uppercase;
+}
+
+.logo {
+  display: inline-block;
+  align-self: center;
+  margin: 0;
+  font-weight: $font-weight-light;
+}
+
+//==============================================================================
+// GRAPHICS
+//==============================================================================
+
+// IMAGES ----------------------------------------------------------------------
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  padding: .5em;
+  border-radius: 50%;
+  align-self: center;
+}
+
+// ICONS -----------------------------------------------------------------------
+
+header .icon {
+  width: 25px;
+  height: 25px;
+}
+
+.main-nav .icon {
+  width: 35px;
+  height: 35px;
+  fill: $color-secondary-light;
+}
+
+.main-nav .current {
+  width: 35px;
+  height: 35px;
+  fill: $white;
+}
+
+.social-stats .icon {
+  width: 100%;
+  height: 100%;
+  fill: $white;
+}
+
+
+//==============================================================================
+// FORMS
+//==============================================================================
+
+input,
+select {
+  height: 3em;
+  width: 100%;
+  padding:1em;
+  background-color: #faf8f8;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+
+}
+
+//==============================================================================
+// BUTTONS
+//==============================================================================
+
+button {
+  height: 3em;
+  width: 100%;
+  background-color: $color-primary;
+  border: 0;
+  border-radius: 4px;
+  color: $white;
+  text-transform: uppercase;
+}
+
+.stat-filter {
+  width: auto;
+  height: 2em;
+  background-color: transparent;
+  color: $black;
+  text-transform: none;
+
+}
+
+.active-filter {
+  border-radius: 20px;
+  background-color: $deYork;
+  color: $white;
+}
+
+.cancel {
+  background-color: $darkGrey;
+}
