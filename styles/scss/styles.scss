@@ -312,14 +312,24 @@ header .icon {
 //==============================================================================
 
 input,
-select {
-  height: 3em;
+select,
+textarea {
+  // height: 3em;
   width: 100%;
   padding:1em;
+  margin-bottom: 1em;
   background-color: #faf8f8;
   border: 1px solid lightgrey;
   border-radius: 4px;
 
+}
+
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 6em;
 }
 
 //==============================================================================
@@ -334,6 +344,7 @@ button {
   border-radius: 4px;
   color: $white;
   text-transform: uppercase;
+  margin-bottom: .5em;
 }
 
 .stat-filter {

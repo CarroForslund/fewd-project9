@@ -128,13 +128,20 @@ header .icon {
   fill: #ffffff; }
 
 input,
-select {
-  height: 3em;
+select,
+textarea {
   width: 100%;
   padding: 1em;
+  margin-bottom: 1em;
   background-color: #faf8f8;
   border: 1px solid lightgrey;
   border-radius: 4px; }
+
+input[type="search"] {
+  box-sizing: border-box; }
+
+textarea {
+  height: 6em; }
 
 button {
   height: 3em;
@@ -143,7 +150,8 @@ button {
   border: 0;
   border-radius: 4px;
   color: #ffffff;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  margin-bottom: .5em; }
 
 .stat-filter {
   width: auto;
