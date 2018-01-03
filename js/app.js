@@ -10,6 +10,10 @@ $.ajax({
   }
 });
 
+function firstUp(name){
+  return name[0].toUpperCase() + name.substring(1);
+}
+
 function populate(randomUsers){
 
   //Variable declaration
@@ -31,18 +35,21 @@ function populate(randomUsers){
     const imageDiv = document.createElement('div');
     const img = document.createElement('img');
     img.src = member.picture.thumbnail;
-    img.alt = member.name.first + ' ' + member.name.last;
+    img.alt = firstUp(member.name.first) + ' ' + firstUp(member.name.last);
     img.className ='avatar';
     imageDiv.appendChild(img);
     memberDiv.appendChild(imageDiv);
 
-    //Use the 4 first users to populate "New Members"
+    //Use the 4 first users to populate "New Members" specific info
     if (i <= 3){
 
       const detailsDiv = document.createElement('div');
       const name = document.createElement('p');
-      name.innerHTML = member.name.first + ' ' + member.name.last;
+      name.className = 'member-name';
+      name.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last);
       const email = document.createElement('p');
+      email.innerHTML = member.email;
+      email.className = 'member-email';
       detailsDiv.appendChild(name);
       detailsDiv.appendChild(email);
       memberDiv.appendChild(detailsDiv);
@@ -51,6 +58,7 @@ function populate(randomUsers){
       const dateDiv = document.createElement('div');
       const signupDate = document.createElement('p');
       signupDate.innerHTML = member.registered;
+      signupDate.className = 'member-signup'
       dateDiv.appendChild(signupDate);
       memberDiv.appendChild(dateDiv);
 
@@ -60,26 +68,29 @@ function populate(randomUsers){
         newMembersDiv.appendChild(line);
       }
     }
-    //Use the last 4 users to populate "Recent Activity"
+    //The 4 last users populates "Recent Activity" specific info
     else {
-      console.log('hey')
+
       //Activity and time
       const activityDiv = document.createElement('div');
       const activity = document.createElement('p');
-      activity.innerHTML = member.name.first + ' ' + member.name.last + membersActivity[i -4];
+      activity.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last) + membersActivity[i -4];
       const time = document.createElement('p');
       time.innerHTML = activityTime[i -4];
+      time.className = 'activity-time';
       activityDiv.appendChild(activity);
       activityDiv.appendChild(time);
       memberDiv.appendChild(activityDiv);
 
-      //Signup Date
-      // const dateDiv = document.createElement('div');
-      // const signupDate = document.createElement('p');
-      // signupDate.innerHTML = member.registered;
-      // dateDiv.appendChild(signupDate);
-      // memberDiv.appendChild(dateDiv);
+      // Signup Date
+      const arrowDiv = document.createElement('div');
+      const arrow = document.createElement('p');
+      arrow.innerHTML = '>';
+      arrow.className = 'activity-arrow';
+      arrowDiv.appendChild(arrow);
+      memberDiv.appendChild(arrowDiv);
 
+      //Add linebreak if not the last one
       recentActivityDiv.appendChild(memberDiv);
       if (i < 7){
         const line = document.createElement('hr');
@@ -87,62 +98,4 @@ function populate(randomUsers){
       }
     }
   }
-
-  // const newMembersDiv = document.getElementById('new-members');
-  // //Populate New Members div with random users
-  // for (let i = 0; i < randomUsers.length; i++) {
-  //
-  //   const member = randomUsers[i];
-  //
-  //   //Wrapper div for user info
-  //   const memberDiv = document.createElement('div');
-  //
-  //   //Image aka avatar
-  //   const imageDiv = document.createElement('div');
-  //   const img = document.createElement('img');
-  //   img.src = member.picture.thumbnail;
-  //   img.alt = member.name.first + ' ' + member.name.last;
-  //   img.className ='avatar';
-  //   imageDiv.appendChild(img);
-  //   memberDiv.appendChild(imageDiv);
-  //
-  //   //Name and Email
-  //   const detailsDiv = document.createElement('div');
-  //   const name = document.createElement('p');
-  //   name.innerHTML = member.name.first + ' ' + member.name.last;
-  //   const email = document.createElement('p');
-  //   detailsDiv.appendChild(name, email);
-  //   memberDiv.appendChild(detailsDiv);
-  //
-  //   //Signup Date
-  //   const dateDiv = document.createElement('div');
-  //   const signupDate = document.createElement('p');
-  //   signupDate.innerHTML = member.registered;
-  //   dateDiv.appendChild(signupDate);
-  //   memberDiv.appendChild(dateDiv);
-  //
-  //   newMembersDiv.appendChild(memberDiv);
-  //   if (i < 4){
-  //     const line = document.createElement('hr');
-  //     newMembersDiv.appendChild(line);
-  //   }
-  // }
 }
-
-// <div>
-    // <img class="avatar" src="graphics/images/avatar.jpg" alt="avatar" />
-    // <p>Jane Doe <br>
-    // jane.doe@gmail.com</p>
-    // <p>XX/XX/XX</p>
-// </div>
-
-// <hr>
-
-// <div>
-//   <img class="avatar" src="graphics/images/avatar.jpg" alt="avatar" />
-//   <p>Jane Doe did something</p>
-//   <p>This long ago</p>
-// </div>
-// <div>
-//   <p>></p>
-// </div>
