@@ -30,6 +30,7 @@ function populate(randomUsers){
 
     //Wrapper div for user info
     const memberDiv = document.createElement('div');
+    memberDiv.className = 'member';
 
     //Image aka avatar
     const imageDiv = document.createElement('div');
@@ -56,10 +57,11 @@ function populate(randomUsers){
 
       //Signup Date
       const dateDiv = document.createElement('div');
+      dateDiv.className = 'flex-item-last';
       const signupDate = document.createElement('p');
       const dateOptions = { month: '2-digit', day: '2-digit', year: '2-digit'};
       signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
-      signupDate.className = 'member-signup'
+      signupDate.className = 'member-signup';
       dateDiv.appendChild(signupDate);
       memberDiv.appendChild(dateDiv);
 
@@ -86,7 +88,7 @@ function populate(randomUsers){
       // Signup Date
       const arrowDiv = document.createElement('div');
       const arrow = document.createElement('p');
-      arrow.innerHTML = '>';
+      arrow.innerHTML = '›';
       arrow.className = 'activity-arrow';
       arrowDiv.appendChild(arrow);
       memberDiv.appendChild(arrowDiv);

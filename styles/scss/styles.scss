@@ -150,9 +150,10 @@ p {
     @include mediaquery(medium){
       @include flex-container(space-between, row){
         flex-grow: 1;
-        align-items: center;
+        // align-items: center;
       };
       padding: 1em;
+      border-bottom: 1px solid $darkGrey;
     }
   }
   &-column {
@@ -163,6 +164,7 @@ p {
         //Generate column modifier classes
         &-#{$i}{
           width: percentage($target / $context);
+          padding: 1em;
         }
       }
     }
@@ -170,10 +172,12 @@ p {
   }
 }
 
-
-
 .flex-item-1 {
   margin-right: auto;
+}
+
+.flex-item-last{
+  margin-left: auto;
 }
 
 //==============================================================================
@@ -234,7 +238,12 @@ header {
   .search {
     background-color: $white;
     @include mediaquery(medium){
-      width: auto;
+      width: 75%;
+      float: right;
+      margin: 0;
+    }
+    @include mediaquery(large){
+      width: 20em;
       float: right;
       margin: 0;
     }
@@ -255,11 +264,13 @@ main {
 .dashboard-top {
   @include mediaquery(medium){
     padding: 0 0 0 1em;
+    border-bottom: 0;
   }
 }
 
 .stat-filter-nav {
-  padding: 1em 0 0 0;
+  padding: 0;
+  border-bottom: 0;
 }
 
 .social-stats-container {
@@ -279,8 +290,42 @@ main {
   border: 1px solid $darkGrey;
   border-radius: 4px;
   @include mediaquery(medium){
-    padding: 0.5em 1.5em;
+    padding: 0.5em 1em;
     margin: 0;
+  }
+}
+
+.member {
+  @include flex-container(flex-start, row){
+    align-items: center;
+  };
+  p {
+    font-size: .87em;
+    margin: .1em;
+  }
+  .member-email, {
+    font-size: .75em;
+    color: $color-primary;
+  }
+  .activity-time {
+    font-size: .75em;
+  }
+  .activity-arrow {
+    font-size: 2em;
+    color: $color-primary;
+  }
+}
+
+.setting-option {
+  @include mediaquery(medium){
+    @include flex-container(space-between, row){
+      align-items: center;
+    }
+  }
+  @include mediaquery(large){
+    @include flex-container(flex-start, row){
+      align-items: center;
+    }
   }
 }
 
