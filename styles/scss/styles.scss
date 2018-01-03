@@ -155,28 +155,22 @@ p {
       padding: 1em;
     }
   }
-  // &-column {
-  //   &-1 {
-  //     width: 50%;
-  //   }
-  //   &-2{
-  //     width: 100%;
-  //   }
-  // }
-}
-
-//Calculate grid column sizes for bigger screens
-@include mediaquery(medium){
-  @for $i from 1 to $grid-column-count+1{
-    $context : grid-context($grid-column-width, $grid-column-count, $grid-column-width);
-    // $target  : ($grid-column-width * $i);
-    $target  : ($grid-column-width * $i) + ($grid-gutter-width * ($i - 1));
-    //Generate column modifier classes
-    .grid-column-#{$i}{
-      width: percentage($target / $context);
+  &-column {
+    @include mediaquery(medium){ //Calculate grid column sizes for bigger screens
+      @for $i from 1 to $grid-column-count+1{
+        $context : grid-context($grid-column-width, $grid-column-count, $grid-column-width);
+        $target  : ($grid-column-width * $i) + ($grid-gutter-width * ($i - 1));
+        //Generate column modifier classes
+        &-#{$i}{
+          width: percentage($target / $context);
+        }
+      }
     }
+
   }
 }
+
+
 
 .flex-item-1 {
   margin-right: auto;
@@ -294,8 +288,6 @@ main {
 // TYPOGRAPHY
 //==============================================================================
 
-// HEADLINES -------------------------------------------------------------------
-
 .headline-primary {
   font-size: 1.5em;
   color: $black;
@@ -311,11 +303,13 @@ main {
 
 .logo {
   display: inline-block;
-  // align-self: center;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1em;
   font-weight: $font-weight-light;
+  @include mediaquery(medium){
+    font-size: 1.6em;
+  }
 }
 
 .social-stats-headline {
