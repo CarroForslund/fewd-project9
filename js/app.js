@@ -57,7 +57,8 @@ function populate(randomUsers){
       //Signup Date
       const dateDiv = document.createElement('div');
       const signupDate = document.createElement('p');
-      signupDate.innerHTML = member.registered;
+      const dateOptions = { month: '2-digit', day: '2-digit', year: '2-digit'};
+      signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
       signupDate.className = 'member-signup'
       dateDiv.appendChild(signupDate);
       memberDiv.appendChild(dateDiv);
