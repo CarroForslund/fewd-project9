@@ -10,7 +10,7 @@ let users = null;
 const trafficChartCanvas = document.getElementById('traffic-line-chart');
 const trafficChart = newTrafficChart(['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'], [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750])
 
-
+// Create a new line chart
 function newTrafficChart(labels, data){
 
   new Chart(trafficChartCanvas, {
@@ -48,41 +48,6 @@ function newTrafficChart(labels, data){
   });
 
 }
-// let trafficChart = new Chart(trafficChartCanvas, {
-//   type: 'line',
-//   data: {
-//     labels: ['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'],
-//     datasets: [{
-//       data: [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750],
-//       backgroundColor: '#e2e3f6',
-//       borderColor: '#7477bf',
-//       borderWidth: 0.5,
-//       pointBackgroundColor: 'white',
-//       pointBorderWidth: 1,
-//       radius: 5
-//     }]
-//   },
-//   options: {
-//     responsive: true,
-//     legend: {
-//       display: false
-//     },
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero:true
-//         }
-//       }]
-//     },
-//     elements: {
-//       line: {
-//         tension: 0, // disables bezier curves
-//       }
-//     }
-//   }
-// });
-
-
 
 const statFilterButtons = document.getElementsByClassName('stat-filter');
 for (button of statFilterButtons){
@@ -289,10 +254,11 @@ function populate(randomUsers){
 
 const userSearchField = document.querySelector("input[id='user-search']");
 const userDatalist = document.getElementById('matching-users');
+let searchResult = [];
 
 userSearchField.onkeyup = function(){
   const input = userSearchField.value;
-  let searchResult = [];
+  searchResult = [];
   let options = '';
 
   // Refresh datalist for every character added or removed in iput field
@@ -309,7 +275,7 @@ userSearchField.onkeyup = function(){
     }
     // Add datalist options with search result
     for (let i = 0; i < searchResult.length; i++) {
-      const name = firstUp(searchResult[i].name.first) + ' ' + firstUp(searchResult[i].name.last)
+      const name = firstUp(searchResult[i].name.first) + ' ' + firstUp(searchResult[i].name.last);
       options += '<option value="' + name + '" />';
       userDatalist.innerHTML = options;
     }
@@ -318,9 +284,34 @@ userSearchField.onkeyup = function(){
 
 // SEND BUTTON
 const sendButton = document.getElementById('send');
+const messageDiv = document.getElementById('message-user');
+let message = '';
+let messageNotification = document.createElement('p');
+
+
 sendButton.addEventListener('click', function(e){
-  console.log('click');
+  const userSearchField = document.querySelector("input[id='user-search']");
+  const writtenMessage = document.getElementById('message').value;
+  let validUser = false;
+  for (let i = 0; i < searchResult.length; i++) {
+
+    const userN = firstUp(searchResult[i].name.first) + ' ' + firstUp(searchResult[i].name.last);
+    
+    if (userN === userSearchField.value){
+      validUser = true;
+    }
+  }
+
+  // Validate
+  if (writtenMessage !== '' && writtenMessage !== null && validUser === true){
+    message = 'Your message has been sent!';
+    messageNotification.innerHTML = (message);
+    messageDiv.appendChild(messageNotification);
+  } else {
+    message = 'Oops! You have to choose an existing user and write a message.';
+    messageNotification.innerHTML = (message);
+    messageDiv.appendChild(messageNotification);
+    let validUser = false;
+  }
+
 });
-// Validate
-// Error Message
-// Success Message
