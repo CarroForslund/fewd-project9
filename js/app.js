@@ -41,6 +41,18 @@ const trafficChart = new Chart(trafficChartCanvas, {
   }
 });
 
+const statFilterButtons = document.getElementsByClassName('stat-filter');
+for (button of statFilterButtons){
+  button.addEventListener('click', function(e){
+    console.log('click!');
+    for (button of statFilterButtons){
+      button.classList.remove('active-filter');
+    }
+    this.classList.add('active-filter');
+  });
+}
+
+
 // DAILY TRAFFIC CHART
 const dailyTrafficChartCanvas = document.getElementById('daily-traffic-bar-chart');
 const dailyTrafficChart = new Chart(dailyTrafficChartCanvas, {
