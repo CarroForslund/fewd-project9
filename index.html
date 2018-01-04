@@ -169,7 +169,7 @@
                 <div class="setting-option">
                   <p>Send Email Notifications</p>
                   <label class="switch">
-                  	<input class="switch-input" type="checkbox" />
+                  	<input id="switch-email" class="switch-input" type="checkbox" />
                   	<span class="switch-label" data-on="On" data-off="Off"></span>
                   	<span class="switch-handle"></span>
                   </label>
@@ -178,7 +178,7 @@
                 <div class="setting-option">
                   <p>Set Profile to Public</p>
                   <label class="switch">
-                  	<input class="switch-input" type="checkbox" />
+                  	<input id="switch-public" class="switch-input" type="checkbox" />
                   	<span class="switch-label" data-on="On" data-off="Off"></span>
                   	<span class="switch-handle"></span>
                   </label>
@@ -186,7 +186,7 @@
 
               </div>
 
-              <select>
+              <select id="time-zone">
                 <option id="default" value="" disabled selected>Select Timezone</option>
                 <option>(GMT-12:00) International Date Line West</option>
                 <option>(GMT-11:00) Midway Island, Samoa</option>
@@ -273,7 +273,7 @@
               </select>
 
               <div class="setting-buttons">
-                <button>Save</button>
+                <button id="save-settings">Save</button>
                 <button class="cancel">Cancel</button>
               </div>
             </div>
