@@ -1,45 +1,88 @@
-// VARIABLE DECLARATION
+// =============================================================================
+// TRAFFIC CHARTS
+// =============================================================================
 let users = null;
 
 // =============================================================================
-// CHARTS
+// TRAFFIC CHARTS
 // =============================================================================
 
-// TRAFFIC CHART
 const trafficChartCanvas = document.getElementById('traffic-line-chart');
-const trafficChart = new Chart(trafficChartCanvas, {
-  type: 'line',
-  data: {
-    labels: ['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'],
-    datasets: [{
-      data: [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750],
-      backgroundColor: '#e2e3f6',
-      borderColor: '#7477bf',
-      borderWidth: 0.5,
-      pointBackgroundColor: 'white',
-      pointBorderWidth: 1,
-      radius: 5
-    }]
-  },
-  options: {
-    responsive: true,
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero:true
-        }
+const trafficChart = newTrafficChart(['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'], [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750])
+
+
+function newTrafficChart(labels, data){
+
+  new Chart(trafficChartCanvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: '#e2e3f6',
+        borderColor: '#7477bf',
+        borderWidth: 0.5,
+        pointBackgroundColor: 'white',
+        pointBorderWidth: 1,
+        radius: 5
       }]
     },
-    elements: {
-      line: {
-        tension: 0, // disables bezier curves
+    options: {
+      responsive: true,
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      },
+      elements: {
+        line: {
+          tension: 0, // disables bezier curves
+        }
       }
     }
-  }
-});
+  });
+
+}
+// let trafficChart = new Chart(trafficChartCanvas, {
+//   type: 'line',
+//   data: {
+//     labels: ['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'],
+//     datasets: [{
+//       data: [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750],
+//       backgroundColor: '#e2e3f6',
+//       borderColor: '#7477bf',
+//       borderWidth: 0.5,
+//       pointBackgroundColor: 'white',
+//       pointBorderWidth: 1,
+//       radius: 5
+//     }]
+//   },
+//   options: {
+//     responsive: true,
+//     legend: {
+//       display: false
+//     },
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero:true
+//         }
+//       }]
+//     },
+//     elements: {
+//       line: {
+//         tension: 0, // disables bezier curves
+//       }
+//     }
+//   }
+// });
+
+
 
 const statFilterButtons = document.getElementsByClassName('stat-filter');
 for (button of statFilterButtons){
@@ -49,6 +92,25 @@ for (button of statFilterButtons){
       button.classList.remove('active-filter');
     }
     this.classList.add('active-filter');
+    const clickedButton = this.innerHTML;
+
+    if (clickedButton === 'Hourly') {
+      console.log('Hourly');
+      const chart = newTrafficChart(['8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3m', '4pm', '5pm'], [580, 350, 200, 500, 775, 900, 450, 300, 175, 600]);
+    }
+    else if (clickedButton === 'Daily') {
+      console.log('Daily');
+      const chart = newTrafficChart(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], [1250, 1500, 1300, 800, 950, 475, 1750]);
+    }
+    else if (clickedButton === 'Weekly') {
+      console.log('Weekly');
+      const chart = newTrafficChart(['1', '2', '3', '4'], [500, 1000, 750, 1250]);
+    }
+    else if (clickedButton === 'Monthly') {
+      console.log('Monthly');
+      const chart = newTrafficChart(['January', 'February', 'March', 'April', 'May', 'June'], [3000, 1700, 5000, 2500, 1300, 4750]);
+
+    }
   });
 }
 
