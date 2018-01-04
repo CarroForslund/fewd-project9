@@ -137,7 +137,8 @@ header {
     border-left: 1px solid #b2b2b2;
     padding: 1em; } }
 .search-bar .search {
-  background-color: #ffffff; }
+  background: #ffffff url("../../graphics/icons/icon-magnifying.svg") no-repeat right center;
+  background-position: 95%; }
   @media (min-width: 768px) {
     .search-bar .search {
       width: 75%;

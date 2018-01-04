@@ -211,7 +211,7 @@ function populate(randomUsers){
 // MESSAGE USER
 // =============================================================================
 
-// SEARCH -----------
+// SEARCH FOR USER
 
 const userSearchField = document.querySelector("input[id='user-search']");
 const userDatalist = document.getElementById('matching-users');
@@ -227,7 +227,7 @@ userSearchField.onkeyup = function(){
   }
   //Only look for a match if it's not an empty string
   if (input !== ''){
-    //If match save to search result 
+    //If match save to search result
     for (let i = 0; i < users.length; i++){
       if (users[i].name.first.includes(input) || users[i].name.first.includes(input)){
         searchResult.push(users[i]);
@@ -242,4 +242,11 @@ userSearchField.onkeyup = function(){
   }
 };
 
-// SEND -------------
+// SEND BUTTON
+const sendButton = document.getElementById('send');
+sendButton.addEventListener('click', function(e){
+  console.log('click');
+});
+// Validate
+// Error Message
+// Success Message

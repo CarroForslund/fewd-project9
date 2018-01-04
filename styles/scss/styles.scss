@@ -239,7 +239,10 @@ header {
     padding: 1em;
   }
   .search {
-    background-color: $white;
+    // background-image: url('/graphics/icons/icon-magnifying.svg');
+    // background-color: $white;
+    background: $white url('../../graphics/icons/icon-magnifying.svg') no-repeat right center;
+    background-position: 95%;
     @include mediaquery(medium){
       width: 75%;
       float: right;
