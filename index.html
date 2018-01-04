@@ -13,7 +13,7 @@
 
     <div class="wrapper">
 
-      <header class="grid-row">
+      <header class="grid-row grid-column-12 no-bottom-border">
         <h1 class="logo flex-item-1"><b>Your</b>App<sup>&trade;</sup></h1>
         <img class="icon" src="graphics/icons/icon-bell.svg" alt="notification bell" />
         <img class="avatar" src="graphics/images/avatar.jpg" alt="avatar" />
@@ -22,7 +22,6 @@
 
       <div class="main-container">
 
-        <!-- Horizontal left navigation -->
         <nav class="main-nav">
 
           <a class="nav-item" href="#">
@@ -53,7 +52,7 @@
 
         <!-- Dashboard area -->
         <main>
-          <div class="dashboard-top grid-row">
+          <div class="dashboard-top grid-row no-bottom-border">
             <div class="grid-column-3">
               <h1 class="headline-primary">Dashboard</h1>
             </div>
@@ -72,28 +71,26 @@
               <div class=" grid-row stat-filter-nav">
                 <h2 class="headline-secondary flex-item-1">Traffic</h2></li>
 
-                <button class="stat-filter active-filter">Hourly</button>
+                <button class="stat-filter">Hourly</button>
                 <button class="stat-filter">Daily</button>
-                <button class="stat-filter">Weekly</button>
+                <button class="stat-filter active-filter">Weekly</button>
                 <button class="stat-filter">Monthly</button>
               </div>
 
-              <p>Insert Line Chart here</p>
-              <!-- <canvas id="line-chart" width="600" height="300"></canvas> -->
+              <canvas id="traffic-line-chart"></canvas>
             </div>
           </div>
 
           <div class="grid-row">
             <div class="grid-column-6">
               <h2 class="headline-secondary">Daily Traffic</h2>
-              <p>Insert Bar Chart here</p>
-              <!-- <canvas id="bar-chart" width="600" height="300"></canvas> -->
+              <canvas id="daily-traffic-bar-chart"></canvas>
             </div>
 
             <div class="grid-column-6">
               <h2 class="headline-secondary">Mobile Users</h2>
-              <p>Insert Donut Chart here</p>
-              <!-- <canvas id="donut-chart" width="600" height="300"></canvas> -->
+
+              <canvas id="mobile-users-doughnut-chart"></canvas>
             </div>
           </div>
 
@@ -146,18 +143,16 @@
             <div class="grid-column-6">
               <h2 class="headline-secondary">New Members</h2>
 
-              <!-- Make this content dynamic -->
               <div id="new-members"></div>
             </div>
 
             <div class="grid-column-6">
               <h2 class="headline-secondary">Recent Activity</h2>
 
-              <!-- Make this content dynamic -->
               <div id="recent-activity"></div>
             </div>
           </div>
-          <div class="grid-row">
+          <div class="grid-row no-bottom-border">
 
             <div class="message-user grid-column-6">
               <h2 class="headline-secondary">Message User</h2>
@@ -171,27 +166,28 @@
 
               <h2 class="headline-secondary">Settings</h2>
 
-              <div class="setting-option">
-                <p>Send Email Notifications</p>
-                <label class="switch">
-                	<input class="switch-input" type="checkbox" />
-                	<span class="switch-label" data-on="On" data-off="Off"></span>
-                	<span class="switch-handle"></span>
-                </label>
+              <div class="setting-options">
+
+                <div class="setting-option">
+                  <p>Send Email Notifications</p>
+                  <label class="switch">
+                  	<input class="switch-input" type="checkbox" />
+                  	<span class="switch-label" data-on="On" data-off="Off"></span>
+                  	<span class="switch-handle"></span>
+                  </label>
+                </div>
+
+                <div class="setting-option">
+                  <p>Set Profile to Public</p>
+                  <label class="switch">
+                  	<input class="switch-input" type="checkbox" />
+                  	<span class="switch-label" data-on="On" data-off="Off"></span>
+                  	<span class="switch-handle"></span>
+                  </label>
+                </div>
+
               </div>
 
-              <div class="setting-option">
-
-                <p>Set Profile to Public</p>
-                <label class="switch">
-                	<input class="switch-input" type="checkbox" />
-                	<span class="switch-label" data-on="On" data-off="Off"></span>
-                	<span class="switch-handle"></span>
-                </label>
-                
-              </div>
-
-              <!--Select Timezone Dropdown -->
               <select>
                 <option id="default" value="" disabled selected>Select Timezone</option>
                 <option>(GMT-12:00) International Date Line West</option>
@@ -278,8 +274,10 @@
                 <option>(GMT+13:00) Nuku'alofa</option>
               </select>
 
-              <button>Save</button>
-              <button class="cancel">Cancel</button>
+              <div class="setting-buttons">
+                <button>Save</button>
+                <button class="cancel">Cancel</button>
+              </div>
             </div>
           </div>
 
@@ -288,7 +286,6 @@
 
     </div> <!-- wrapper -->
 
-    <!--JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
     <script src="js/app.js"></script>

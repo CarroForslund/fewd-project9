@@ -1,3 +1,98 @@
+// =============================================================================
+// CHARTS
+// =============================================================================
+
+// TRAFFIC CHART
+const trafficChartCanvas = document.getElementById('traffic-line-chart');
+const trafficChart = new Chart(trafficChartCanvas, {
+  type: 'line',
+  data: {
+    labels: ['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'],
+    datasets: [{
+      data: [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750],
+      backgroundColor: '#e2e3f6',
+      borderColor: '#7477bf',
+      borderWidth: 0.5,
+      pointBackgroundColor: 'white',
+      pointBorderWidth: 1,
+      radius: 5
+    }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true
+        }
+      }]
+    },
+    elements: {
+      line: {
+        tension: 0, // disables bezier curves
+      }
+    }
+  }
+});
+
+// DAILY TRAFFIC CHART
+const dailyTrafficChartCanvas = document.getElementById('daily-traffic-bar-chart');
+const dailyTrafficChart = new Chart(dailyTrafficChartCanvas, {
+  type: 'bar',
+    data: {
+      labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+      datasets: [{
+        data: [50, 75, 150, 100, 200, 175, 75],
+        backgroundColor: '#7477bf',
+        borderColor: '7477bf',
+        borderWidth: 1
+      }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true
+        }
+      }]
+    }
+  }
+});
+
+// MOBILE USERS CHART
+const mobileUsersChartCanvas = document.getElementById('mobile-users-doughnut-chart');
+const mobileUsersChart = new Chart(mobileUsersChartCanvas, {
+  type: 'doughnut',
+    data: {
+      labels: ['Phones', 'Tablets', 'Desktop'],
+      datasets: [{
+        data: [15, 15., 70],
+        backgroundColor: ['#74b1bf', '#81c98f', '#7477bf'],
+        borderWidth: 1
+      }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'right',
+      labels: {
+        boxWidth: 10,
+      }
+    },
+    rotation: -0.65 * Math.PI
+  }
+});
+
+// =============================================================================
+// MEMBERS
+// =============================================================================
 $.ajax({
   url: 'https://randomuser.me/api/?results=8&inc=name,picture,email,registered',
   dataType: 'json',
@@ -10,10 +105,15 @@ $.ajax({
   }
 });
 
-function firstUp(name){
-  return name[0].toUpperCase() + name.substring(1);
+/* CHANGE FIRST CHARACTER TO UPPERCASE
+*/
+function firstUp(string){
+  return string[0].toUpperCase() + string.substring(1);
 }
 
+/* POPULATE MEMBER SECTIONS
+** using Random Users API https://randomuser.me
+*/
 function populate(randomUsers){
 
   //Variable declaration
@@ -87,6 +187,7 @@ function populate(randomUsers){
 
       // Signup Date
       const arrowDiv = document.createElement('div');
+      arrowDiv.className = 'flex-item-last';
       const arrow = document.createElement('p');
       arrow.innerHTML = '›';
       arrow.className = 'activity-arrow';
