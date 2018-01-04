@@ -150,10 +150,9 @@ p {
     @include mediaquery(medium){
       @include flex-container(space-between, row){
         flex-grow: 1;
-        // align-items: center;
+        padding: 0;
+        border-bottom: 1px solid $darkGrey;
       };
-      padding: 0;
-      border-bottom: 1px solid $darkGrey;
     }
   }
   &-column {

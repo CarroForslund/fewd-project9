@@ -1,3 +1,6 @@
+// VARIABLE DECLARATION
+let users = null;
+
 // =============================================================================
 // CHARTS
 // =============================================================================
@@ -100,8 +103,8 @@ $.ajax({
     console.error("Couldn't get random users from API");
   },
   success: function(data) {
-    const randomUsers = data.results;
-    populate(randomUsers);
+    users = data.results;
+    populate(users);
   }
 });
 
@@ -203,3 +206,40 @@ function populate(randomUsers){
     }
   }
 }
+
+// =============================================================================
+// MESSAGE USER
+// =============================================================================
+
+// SEARCH -----------
+
+const userSearchField = document.querySelector("input[id='user-search']");
+const userDatalist = document.getElementById('matching-users');
+
+userSearchField.onkeyup = function(){
+  const input = userSearchField.value;
+  let searchResult = [];
+  let options = '';
+
+  // Refresh datalist for every character added or removed in iput field
+  while (userDatalist.firstChild) {
+    userDatalist.removeChild(userDatalist.firstChild);
+  }
+  //Only look for a match if it's not an empty string
+  if (input !== ''){
+    //If match save to search result 
+    for (let i = 0; i < users.length; i++){
+      if (users[i].name.first.includes(input) || users[i].name.first.includes(input)){
+        searchResult.push(users[i]);
+      }
+    }
+    // Add datalist options with search result
+    for (let i = 0; i < searchResult.length; i++) {
+      const name = firstUp(searchResult[i].name.first) + ' ' + firstUp(searchResult[i].name.last)
+      options += '<option value="' + name + '" />';
+      userDatalist.innerHTML = options;
+    }
+  }
+};
+
+// SEND -------------

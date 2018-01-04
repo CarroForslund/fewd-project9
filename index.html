@@ -157,7 +157,9 @@
             <div class="message-user grid-column-6">
               <h2 class="headline-secondary">Message User</h2>
 
-              <input type="search" placeholder="Search"id="user"/>
+              <input id="user-search" list="matching-users" placeholder="Search"id="user"/>
+              <datalist id="matching-users"></datalist>
+
               <textarea placeholder="Message for User" id="message"></textarea>
               <button>Send</button>
             </div>
