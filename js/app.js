@@ -1,10 +1,26 @@
 // =============================================================================
 // VARIABLE DECLARATION
 // =============================================================================
-let users = null;
+// Stats
+const statFilterButtons = document.getElementsByClassName('stat-filter');
 const trafficChartCanvas = document.getElementById('traffic-line-chart');
 const dailyTrafficChartCanvas = document.getElementById('daily-traffic-bar-chart');
+const mobileUsersChartCanvas = document.getElementById('mobile-users-doughnut-chart');
 const trafficChart = newTrafficChart(['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7', 'week 8', 'week 9', 'week 10'], [500, 1000, 750, 1250, 1750, 1250, 1500, 1000, 1500, 1750]);
+
+// Search
+const userSearchField = document.querySelector("input[id='user-search']");
+const userDatalist = document.getElementById('matching-users');
+let searchResult = [];
+
+//Users
+let users = null;
+
+//Message
+const sendButton = document.getElementById('send');
+const messageDiv = document.getElementById('message-user');
+let message = '';
+let messageNotification = document.createElement('p');
 // =============================================================================
 // ALERT & NOTIFICATIONS
 // =============================================================================
@@ -56,7 +72,6 @@ function newTrafficChart(labels, data){
 }
 
 // Traffic filter
-const statFilterButtons = document.getElementsByClassName('stat-filter');
 for (button of statFilterButtons){
   button.addEventListener('click', function(e){
     for (button of statFilterButtons){
@@ -109,7 +124,6 @@ const dailyTrafficChart = new Chart(dailyTrafficChartCanvas, {
 });
 
 // MOBILE USERS CHART
-const mobileUsersChartCanvas = document.getElementById('mobile-users-doughnut-chart');
 const mobileUsersChart = new Chart(mobileUsersChartCanvas, {
   type: 'doughnut',
     data: {
@@ -147,15 +161,13 @@ $.ajax({
   }
 });
 
-/* CHANGE FIRST CHARACTER TO UPPERCASE
-*/
+// CHANGE FIRST CHARACTER TO UPPERCASE
 function firstUp(string){
   return string[0].toUpperCase() + string.substring(1);
 }
 
-/* POPULATE MEMBER SECTIONS
-** using Random Users API https://randomuser.me
-*/
+// POPULATE MEMBER SECTIONS
+// using Random Users API https://randomuser.me
 function populate(randomUsers){
 
   //Variable declaration
@@ -165,16 +177,16 @@ function populate(randomUsers){
     " liked the post Facebook's Changes for 2016", " commented on YourApp's SEO Tips"];
   const activityTime = ['1 day ago', '5 hours ago', '5 hours ago', '4 hours ago'];
 
-  //Loop through random users to populate member sections
+  // Loop through random users to populate member sections
   for (let i = 0; i < randomUsers.length; i++) {
 
     const member = randomUsers[i];
 
-    //Wrapper div for user info
+    // Wrapper div for user info
     const memberDiv = document.createElement('div');
     memberDiv.className = 'member';
 
-    //Image aka avatar
+    // Image aka avatar
     const imageDiv = document.createElement('div');
     const img = document.createElement('img');
     img.src = member.picture.thumbnail;
@@ -183,21 +195,27 @@ function populate(randomUsers){
     imageDiv.appendChild(img);
     memberDiv.appendChild(imageDiv);
 
-    //Use the 4 first users to populate "New Members" specific info
+    // Use the 4 first users to populate "New Members" specific info
     if (i <= 3){
 
+      // Wrapping div
       const detailsDiv = document.createElement('div');
+      memberDiv.appendChild(dateDiv);
+
+      // Name
       const name = document.createElement('p');
       name.className = 'member-name';
       name.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last);
+      detailsDiv.appendChild(name);
+
+      // Email
       const email = document.createElement('p');
       email.innerHTML = member.email;
       email.className = 'member-email';
-      detailsDiv.appendChild(name);
       detailsDiv.appendChild(email);
       memberDiv.appendChild(detailsDiv);
 
-      //Signup Date
+      // Signup Date
       const dateDiv = document.createElement('div');
       dateDiv.className = 'flex-item-last';
       const signupDate = document.createElement('p');
@@ -205,27 +223,32 @@ function populate(randomUsers){
       signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
       signupDate.className = 'member-signup';
       dateDiv.appendChild(signupDate);
-      memberDiv.appendChild(dateDiv);
 
+      // Line break between members
       newMembersDiv.appendChild(memberDiv);
       if (i < 3){
         const line = document.createElement('hr');
         newMembersDiv.appendChild(line);
       }
+
     }
-    //The 4 last users populates "Recent Activity" specific info
+    // The 4 last users populates "Recent Activity" specific info
     else {
 
-      //Activity and time
+      // Wrapping div
       const activityDiv = document.createElement('div');
+      memberDiv.appendChild(activityDiv);
+
+      // Activity
       const activity = document.createElement('p');
       activity.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last) + membersActivity[i -4];
+      activityDiv.appendChild(activity);
+
+      // Time
       const time = document.createElement('p');
       time.innerHTML = activityTime[i -4];
       time.className = 'activity-time';
-      activityDiv.appendChild(activity);
       activityDiv.appendChild(time);
-      memberDiv.appendChild(activityDiv);
 
       // Signup Date
       const arrowDiv = document.createElement('div');
@@ -236,7 +259,7 @@ function populate(randomUsers){
       arrowDiv.appendChild(arrow);
       memberDiv.appendChild(arrowDiv);
 
-      //Add linebreak if not the last one
+      // Add linebreak if not the last one
       recentActivityDiv.appendChild(memberDiv);
       if (i < 7){
         const line = document.createElement('hr');
@@ -251,12 +274,9 @@ function populate(randomUsers){
 // =============================================================================
 
 // SEARCH FOR USER
-
-const userSearchField = document.querySelector("input[id='user-search']");
-const userDatalist = document.getElementById('matching-users');
-let searchResult = [];
-
 userSearchField.onkeyup = function(){
+
+  // Variabe declaration
   const input = userSearchField.value;
   searchResult = [];
   let options = '';
@@ -265,31 +285,31 @@ userSearchField.onkeyup = function(){
   while (userDatalist.firstChild) {
     userDatalist.removeChild(userDatalist.firstChild);
   }
-  //Only look for a match if it's not an empty string
+
+  // Only look for a match if it's not an empty string
   if (input !== ''){
+
     //If match save to search result
     for (let i = 0; i < users.length; i++){
       if (users[i].name.first.includes(input) || users[i].name.first.includes(input)){
         searchResult.push(users[i]);
       }
     }
+
     // Add datalist options with search result
     for (let i = 0; i < searchResult.length; i++) {
       const name = firstUp(searchResult[i].name.first) + ' ' + firstUp(searchResult[i].name.last);
       options += '<option value="' + name + '" />';
       userDatalist.innerHTML = options;
     }
+
   }
+
 };
 
 // SEND BUTTON
-const sendButton = document.getElementById('send');
-const messageDiv = document.getElementById('message-user');
-let message = '';
-let messageNotification = document.createElement('p');
-
-
 sendButton.addEventListener('click', function(e){
+  
   const userSearchField = document.querySelector("input[id='user-search']");
   const writtenMessage = document.getElementById('message').value;
   let validUser = false;
@@ -304,14 +324,19 @@ sendButton.addEventListener('click', function(e){
 
   // Validate and display message
   if (writtenMessage !== '' && writtenMessage !== null && validUser === true){
+
     message = 'Your message has been sent!';
     messageNotification.innerHTML = (message);
     messageDiv.appendChild(messageNotification);
-  } else {
+
+  }
+  else {
+
     message = 'Oops! You have to choose an existing user and write a message.';
     messageNotification.innerHTML = (message);
     messageDiv.appendChild(messageNotification);
     let validUser = false;
+
   }
 
 });
@@ -322,6 +347,8 @@ sendButton.addEventListener('click', function(e){
 
 // Test for local storage before saving to it
 if ('localStorage' in window && window['localStorage'] !== null){
+
+  // Variable declaration
   const emailSwitch = document.getElementById('switch-email');
   const publicSwitch = document.getElementById('switch-public');
   const timeZone = document.getElementById('time-zone');
@@ -329,16 +356,20 @@ if ('localStorage' in window && window['localStorage'] !== null){
 
   // Add event listener to save button and save settings to local storage
   saveButton.addEventListener('click', function () {
+
     localStorage.publicState = publicSwitch.checked;
     localStorage.emailState = emailSwitch.checked;
     localStorage.selectedIndex = timeZone.selectedIndex;
     localStorage.exists = true;
+
   });
 
   // Make sure saved settings shows as displayed
   if (localStorage.exists) {
+
     publicSwitch.checked = JSON.parse(localStorage.publicState);
     emailSwitch.checked = JSON.parse(localStorage.emailState);
     timeZone.selectedIndex = localStorage.selectedIndex;
+
   }
 }
