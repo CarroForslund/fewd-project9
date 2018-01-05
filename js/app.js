@@ -200,7 +200,6 @@ function populate(randomUsers){
 
       // Wrapping div
       const detailsDiv = document.createElement('div');
-      memberDiv.appendChild(dateDiv);
 
       // Name
       const name = document.createElement('p');
@@ -223,6 +222,8 @@ function populate(randomUsers){
       signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
       signupDate.className = 'member-signup';
       dateDiv.appendChild(signupDate);
+      
+      memberDiv.appendChild(dateDiv);
 
       // Line break between members
       newMembersDiv.appendChild(memberDiv);
@@ -309,7 +310,7 @@ userSearchField.onkeyup = function(){
 
 // SEND BUTTON
 sendButton.addEventListener('click', function(e){
-  
+
   const userSearchField = document.querySelector("input[id='user-search']");
   const writtenMessage = document.getElementById('message').value;
   let validUser = false;
