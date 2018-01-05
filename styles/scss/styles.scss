@@ -189,7 +189,9 @@ p {
 
 // WRAPPER ---------------------------------------------------------------------
 .wrapper {
-  @include flex-container();
+  @include flex-container(){
+    flex-grow: 1;
+  };
 }
 
 
@@ -197,10 +199,11 @@ p {
 header {
   @include flex-container($direction: row){
     align-items: center;
+    padding: 1.5em;
+    background-color: $color-primary;
+    color: $white;
   };
-  padding: 1.5em;
-  background-color: $color-primary;
-  color: $white;
+
   .user-name {
     display: inline-block;
     color: $white;
@@ -212,19 +215,31 @@ header {
 
 // DASHBOARD CONTAINER ---------------------------------------------------------
 .main-container {
-  @include flex-container(space-between, column);
+  @include flex-container(space-between, column){
+    max-width: 100%;
+  };
   @include mediaquery(medium){
     @include flex-container(flex-start, row);
+  }
+}
+
+main {
+  @include mediaquery(medium){
+    @include flex-container(flex-start, column){
+      flex-grow: 1;
+      padding: 0;
+      border-bottom: 1px solid $darkGrey;
+    };
   }
 }
 
 // NAVIGATION ------------------------------------------------------------------
 
 .main-nav {
-  @include flex-container(space-around, row); //Make it a flex container
-  padding: 1em;
-  background-color: $color-secondary;
-  // float: left;
+  @include flex-container(space-around, row){
+    padding: 1em;
+    background-color: $color-secondary;
+  };
   @include mediaquery(medium){
     @include flex-container(flex-start, column);
   }
@@ -257,13 +272,8 @@ header {
 }
 
 // MAIN CONTENT AREA -----------------------------------------------------------
-
-main {
-  // padding: 1em;
-  @include mediaquery(medium){
-    // padding: 0;
-    flex-grow: 1;
-  }
+canvas {
+  max-width: 100%;
 }
 
 .stat-filter-nav {
