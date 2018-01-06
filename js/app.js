@@ -8,7 +8,10 @@ let modalNumber = 0;
 //Notifications
 const notification = document.getElementById('notification');
 const bell = document.getElementById('bell');
-// let closeBtn = null;
+
+// Alert
+const cookieAlert = document.getElementById('cookie-alert');
+const closeAlert = document.getElementById('close-cookie-alert');
 
 // Stats
 const statFilterButtons = document.getElementsByClassName('stat-filter');
@@ -98,15 +101,9 @@ function modal(msg){
 }
 
 // ALERT
-const cookieAlert = document.getElementById('cookie-alert');
-const closeAlert = document.getElementById('close-cookie-alert');
-
 closeAlert.addEventListener('click', function(){
   cookieAlert.setAttribute('style', 'display: none');
 });
-
-
-
 
 // =============================================================================
 // TRAFFIC CHARTS
@@ -246,8 +243,7 @@ function firstUp(string){
   return string[0].toUpperCase() + string.substring(1);
 }
 
-// POPULATE MEMBER SECTIONS
-// using Random Users API https://randomuser.me
+// POPULATE MEMBER SECTIONS using Random Users API https://randomuser.me
 function populate(randomUsers){
 
   //Variable declaration
