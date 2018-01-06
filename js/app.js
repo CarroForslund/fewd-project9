@@ -1,6 +1,15 @@
 // =============================================================================
 // VARIABLE DECLARATION
 // =============================================================================
+const wrapper = document.getElementsByClassName('wrapper')[0];
+const body = document.body;
+let modalNumber = 0;
+
+//Notifications
+const notification = document.getElementById('notification');
+const bell = document.getElementById('bell');
+// let closeBtn = null;
+
 // Stats
 const statFilterButtons = document.getElementsByClassName('stat-filter');
 const trafficChartCanvas = document.getElementById('traffic-line-chart');
@@ -21,11 +30,87 @@ const sendButton = document.getElementById('send');
 const messageDiv = document.getElementById('message-user');
 let message = '';
 let messageNotification = document.createElement('p');
+
 // =============================================================================
 // ALERT & NOTIFICATIONS
 // =============================================================================
+bell.addEventListener('click', function(event){
+  notification.setAttribute('style', 'opacity: 0');
+
+  modal('You have a new message from Amber');
+  modal('Joshua mentioned you in a comment');
 
 
+});
+
+function modal(msg){
+
+  //Add overlay only once
+  if(modalNumber === 0){
+    //Modal (overlay div)
+    const modal = document.createElement('div');
+    modal.id = 'overlay';
+    modal.className = 'overlay';
+    // console.log(modal);
+    body.appendChild(modal);
+  }
+
+  modalNumber++;
+
+  //Modal content
+  const modal = document.getElementById('overlay');
+  const modalContent = document.createElement('div');
+  modalContent.id = 'popup'+modalNumber;
+  modalContent.className = 'popup';
+  modalContent.setAttribute('style', 'z-index: 200');
+  // modalContent.setAttribute('style', 'position: absolute');
+  // modalContent.setAttribute('style', 'top: 2em');
+  // modalContent.setAttribute('style', 'right: auto');
+  //   modalContent.setAttribute('style', 'left: auto');
+  modal.display = 'block';
+  modal.appendChild(modalContent);
+
+  const close = document.createElement('p');
+  close.className = 'close-popup';
+  // close.href = '#';
+  close.innerHTML = '&times;';
+  close.addEventListener('click', function(){
+    console.log('close');
+    modalContent.display = 'none';
+  });
+  modalContent.appendChild(close);
+
+  const notice = document.createElement('p');
+  notice.innerHTML = msg;
+  modalContent.appendChild(notice);
+
+  console.log(msg);
+  // closeBtn = document.getElementsByClassName("close")[0];
+
+  // // When the user clicks on <span> (x), close the modal
+  // close.onclick = function() {
+  //     modal.style.display = "none";
+  // }
+}
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+// <p><a class="button" href="#popup2">Click Me Too</a></p>
+// <div id="popup2" class="overlay">
+//   <!-- <a class="close-bg" href="#"></a> -->
+//   <div class="popup">
+//     <h2>What the what?</h2>
+//     <div class="content">
+//       <a class="close-bg" href="#">&times;</a>
+//       <p>Click outside the popup to close.</p>
+//     </div>
+//   </div>
+// </div>
 
 
 // =============================================================================
@@ -222,7 +307,7 @@ function populate(randomUsers){
       signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
       signupDate.className = 'member-signup';
       dateDiv.appendChild(signupDate);
-      
+
       memberDiv.appendChild(dateDiv);
 
       // Line break between members
