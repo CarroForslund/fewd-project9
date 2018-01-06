@@ -35,15 +35,20 @@ let messageNotification = document.createElement('p');
 // ALERT & NOTIFICATIONS
 // =============================================================================
 bell.addEventListener('click', function(event){
+  event.target.removeEventListener(event.type, arguments.callee);
+  bell.setAttribute('style', 'cursor: auto');
   notification.setAttribute('style', 'opacity: 0');
 
   modal('You have a new message from Amber');
   modal('Joshua mentioned you in a comment');
 
 
+
 });
 
 function modal(msg){
+
+
 
   //Add overlay only once
   if(modalNumber === 0){
@@ -63,12 +68,12 @@ function modal(msg){
   modalContent.id = 'popup'+modalNumber;
   modalContent.className = 'popup';
   modalContent.setAttribute('style', 'z-index: 200');
-  // modalContent.setAttribute('style', 'position: absolute');
-  // modalContent.setAttribute('style', 'top: 2em');
-  // modalContent.setAttribute('style', 'right: auto');
-  //   modalContent.setAttribute('style', 'left: auto');
-  modal.display = 'block';
+  // modal.setAttribute = 'block';
   modal.appendChild(modalContent);
+
+  const notice = document.createElement('p');
+  notice.innerHTML = msg;
+  modalContent.appendChild(notice);
 
   const close = document.createElement('p');
   close.className = 'close-popup';
@@ -76,13 +81,19 @@ function modal(msg){
   close.innerHTML = '&times;';
   close.addEventListener('click', function(){
     console.log('close');
-    modalContent.display = 'none';
+    console.log(modalContent);
+    modalContent.setAttribute('style', 'display: none');
+    modalNumber--;
+    if(modalNumber === 0){
+      modal.remove();
+      // bell.removeEventListener('click', function(){
+      //   console.log('remove listener');
+      // });
+    }
   });
   modalContent.appendChild(close);
 
-  const notice = document.createElement('p');
-  notice.innerHTML = msg;
-  modalContent.appendChild(notice);
+
 
   console.log(msg);
   // closeBtn = document.getElementsByClassName("close")[0];
