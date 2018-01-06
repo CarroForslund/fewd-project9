@@ -42,13 +42,9 @@ bell.addEventListener('click', function(event){
   modal('You have a new message from Amber');
   modal('Joshua mentioned you in a comment');
 
-
-
 });
 
 function modal(msg){
-
-
 
   //Add overlay only once
   if(modalNumber === 0){
@@ -56,8 +52,14 @@ function modal(msg){
     const modal = document.createElement('div');
     modal.id = 'overlay';
     modal.className = 'overlay';
-    // console.log(modal);
+    modal.addEventListener('click', function(event){
+
+      event.target.removeEventListener(event.type, arguments.callee);
+      modalNumber = 0;
+      modal.remove();
+    });
     body.appendChild(modal);
+
   }
 
   modalNumber++;
