@@ -52,12 +52,12 @@ function modal(msg){
     const modal = document.createElement('div');
     modal.id = 'overlay';
     modal.className = 'overlay';
-    modal.addEventListener('click', function(event){
-
-      event.target.removeEventListener(event.type, arguments.callee);
-      modalNumber = 0;
-      modal.remove();
-    });
+    // modal.addEventListener('click', function(event){
+    //
+    //   event.target.removeEventListener(event.type, arguments.callee);
+    //   modalNumber = 0;
+    //   modal.remove();
+    // });
     body.appendChild(modal);
 
   }
@@ -95,35 +95,17 @@ function modal(msg){
   });
   modalContent.appendChild(close);
 
-
-
-  console.log(msg);
-  // closeBtn = document.getElementsByClassName("close")[0];
-
-  // // When the user clicks on <span> (x), close the modal
-  // close.onclick = function() {
-  //     modal.style.display = "none";
-  // }
 }
 
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
+// ALERT
+const cookieAlert = document.getElementById('cookie-alert');
+const closeAlert = document.getElementById('close-cookie-alert');
 
-// <p><a class="button" href="#popup2">Click Me Too</a></p>
-// <div id="popup2" class="overlay">
-//   <!-- <a class="close-bg" href="#"></a> -->
-//   <div class="popup">
-//     <h2>What the what?</h2>
-//     <div class="content">
-//       <a class="close-bg" href="#">&times;</a>
-//       <p>Click outside the popup to close.</p>
-//     </div>
-//   </div>
-// </div>
+closeAlert.addEventListener('click', function(){
+  cookieAlert.setAttribute('style', 'display: none');
+});
+
+
 
 
 // =============================================================================
@@ -441,7 +423,7 @@ sendButton.addEventListener('click', function(e){
 });
 
 // =============================================================================
-// SAVE SETTINGS
+// SETTINGS
 // =============================================================================
 
 // Test for local storage before saving to it
@@ -452,6 +434,7 @@ if ('localStorage' in window && window['localStorage'] !== null){
   const publicSwitch = document.getElementById('switch-public');
   const timeZone = document.getElementById('time-zone');
   const saveButton = document.getElementById('save-settings');
+  const cancelButton = document.getElementById('cancel-settings');
 
   // Add event listener to save button and save settings to local storage
   saveButton.addEventListener('click', function () {
@@ -471,4 +454,5 @@ if ('localStorage' in window && window['localStorage'] !== null){
     timeZone.selectedIndex = localStorage.selectedIndex;
 
   }
+
 }
